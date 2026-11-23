@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamza Zaheer — LiDAR & Photogrammetry Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #080D1A;
+  --navy-mid: #0E1829;
+  --navy-card: #111C2E;
+  --cyan: #00C8FF;
+  --cyan-dim: rgba(0,200,255,0.12);
+  --cyan-border: rgba(0,200,255,0.25);
+  --white: #F0F4FF;
+  --slate: #8B9BB4;
+  --slate-light: #B4C2D8;
+  --amber: #F5A623;
+  --green: #00D68F;
+  --red-soft: #FF6B6B;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.75rem;
+  --fs-3xl: 2.5rem;
+  --fs-4xl: 3.5rem;
+  --fs-hero: clamp(2.8rem, 6vw, 5.5rem);
+}
+@media (prefers-color-scheme: dark) { :root { color-scheme: dark; } }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: rgba(8,13,26,0.95);
+  z-index: 100;
+}
+
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.15; }
+
+a { color: var(--cyan); text-decoration: none; }
+a:hover { opacity: 0.8; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 64px;
+  background: rgba(8,13,26,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,200,255,0.08);
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--cyan); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--slate);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); opacity: 1; }
+.nav-cta {
+  background: var(--cyan);
+  color: var(--navy) !important;
+  padding: 0.4rem 1.1rem;
+  border-radius: 4px;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+.nav-cta:hover { background: #33d4ff !important; opacity: 1 !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+/* SECTIONS */
+section { padding: 7rem clamp(1.5rem, 8vw, 8rem); max-width: 1400px; margin: 0 auto; }
+.section-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* HERO */
+.hero-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 64px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,200,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(0,200,255,0.04) 0%, transparent 60%),
+    linear-gradient(180deg, #080D1A 0%, #0a1220 100%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.5rem, 8vw, 8rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-border);
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  font-size: var(--fs-sm);
+  color: var(--cyan);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+}
+.hero-name {
+  font-size: var(--hero-fs, var(--fs-hero));
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  line-height: 1.0;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s forwards;
+}
+.hero-title {
+  font-size: var(--fs-xl);
+  color: var(--cyan);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.3s forwards;
+}
+.hero-desc {
+  max-width: 580px;
+  color: var(--slate-light);
+  font-size: var(--fs-lg);
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.4s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.5s forwards;
+}
+.btn-primary {
+  background: var(--cyan);
+  color: var(--navy);
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: var(--fs-base);
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #33d4ff; color: var(--navy); opacity: 1; }
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: var(--fs-base);
+  border: 1px solid rgba(240,244,255,0.25);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-outline:hover { border-color: var(--cyan); color: var(--cyan); opacity: 1; }
+.hero-stats {
+  position: absolute;
+  right: clamp(1.5rem, 8vw, 8rem);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeLeft 0.7s 0.6s forwards;
+}
+.hero-stat {
+  text-align: right;
+  border-right: 2px solid var(--cyan);
+  padding-right: 1.25rem;
+}
+.hero-stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: var(--fs-xs);
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.2rem;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translate(20px, -50%); }
+  to   { opacity: 1; transform: translate(0, -50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-name, .hero-title, .hero-desc, .hero-actions, .hero-stats {
+    animation: none; opacity: 1; transform: none;
+  }
+  .hero-stats { transform: translateY(-50%); }
+}
+
+/* ABOUT */
+.about-wrap { background: var(--navy-mid); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-text h2 {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+.about-text p {
+  color: var(--slate-light);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  max-width: 55ch;
+}
+.about-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--cyan-border);
+  border-radius: 4px;
+  color: var(--cyan);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.about-link:hover { background: var(--cyan-dim); opacity: 1; }
+.about-skills h3 {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.skill-group { margin-bottom: 1.5rem; }
+.skill-group-label {
+  font-size: var(--fs-xs);
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-tag {
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-border);
+  color: var(--slate-light);
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+
+/* PROOF/SCALE */
+.scale-wrap { }
+.scale-header { margin-bottom: 4rem; }
+.scale-header h2 { font-size: var(--fs-3xl); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.scale-header p { color: var(--slate); max-width: 55ch; }
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--cyan-border);
+  border: 1px solid var(--cyan-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.metric-card {
+  background: var(--navy-card);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.metric-card:nth-child(1)::before { background: var(--cyan); }
+.metric-card:nth-child(2)::before { background: var(--amber); }
+.metric-card:nth-child(3)::before { background: var(--green); }
+.metric-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--fs-4xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.metric-card:nth-child(1) .metric-num { color: var(--cyan); }
+.metric-card:nth-child(2) .metric-num { color: var(--amber); }
+.metric-card:nth-child(3) .metric-num { color: var(--green); }
+.metric-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--slate);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+.metric-desc { color: var(--slate-light); font-size: var(--fs-sm); line-height: 1.5; }
+.integrity-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0,200,255,0.06);
+  border: 1px solid var(--cyan-border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+}
+.integrity-bar svg { flex-shrink: 0; }
+.integrity-bar p { color: var(--slate-light); font-size: var(--fs-sm); }
+.integrity-bar strong { color: var(--cyan); }
+
+/* SERVICES */
+.services-wrap { background: var(--navy-mid); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(139,155,180,0.1);
+  border: 1px solid rgba(139,155,180,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+.service-card {
+  background: var(--navy-card);
+  padding: 2rem 1.75rem;
+  position: relative;
+}
+.service-card:hover { background: rgba(17,28,46,0.9); }
+.service-icon {
+  width: 40px; height: 40px;
+  margin-bottom: 1.25rem;
+  color: var(--cyan);
+}
+.service-card h3 { font-size: var(--fs-lg); font-weight: 600; margin-bottom: 0.6rem; }
+.service-card p { color: var(--slate); font-size: var(--fs-sm); line-height: 1.6; }
+
+/* CASE STUDIES */
+.cases-header { margin-bottom: 4rem; }
+.cases-header h2 { font-size: var(--fs-3xl); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.cases-header p { color: var(--slate); }
+
+.case-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--navy-card);
+  border: 1px solid rgba(139,155,180,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+.case-card.reverse { direction: rtl; }
+.case-card.reverse > * { direction: ltr; }
+.case-info { padding: 2.5rem 2.5rem; }
+.case-tag {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  background: var(--cyan);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.case-card:nth-child(2) .case-tag { background: var(--amber); }
+.case-card:nth-child(3) .case-tag { background: var(--green); }
+.case-card:nth-child(4) .case-tag { background: var(--red-soft); }
+.case-card:nth-child(5) .case-tag { background: #A78BFA; }
+.case-info h3 {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.case-info p {
+  color: var(--slate-light);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  max-width: 50ch;
+}
+.case-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(139,155,180,0.08);
+  border: 1px solid rgba(139,155,180,0.15);
+  border-radius: 3px;
+  padding: 0.3rem 0.7rem;
+  font-size: var(--fs-xs);
+  color: var(--slate-light);
+  font-weight: 500;
+  margin: 0 0.3rem 0.5rem 0;
+}
+.case-metrics-mini {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(139,155,180,0.1);
+}
+.case-metric-mini .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.case-metric-mini .lbl {
+  font-size: var(--fs-xs);
+  color: var(--slate);
+  margin-top: 0.2rem;
+}
+.case-visual {
+  background: var(--navy-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.case-visual-inner {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--slate);
+  font-size: var(--fs-sm);
+  text-align: center;
+  padding: 2rem;
+}
+/* Decorative SVG visuals for each case */
+.viz-wear { position: relative; width: 100%; height: 100%; min-height: 300px; }
+.viz-chart-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 140px;
+  padding: 0 1rem;
+}
+.viz-bar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  min-width: 18px;
+  opacity: 0.85;
+}
+.deviation-table {
+  background: rgba(0,200,255,0.05);
+  border: 1px solid var(--cyan-border);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: var(--fs-xs);
+  width: 100%;
+  max-width: 280px;
+}
+.deviation-table th {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+.deviation-table td {
+  padding: 0.4rem 0.75rem;
+  color: var(--slate-light);
+  border-top: 1px solid rgba(0,200,255,0.08);
+}
+.deviation-table td:last-child { color: var(--white); font-weight: 500; font-family: 'Space Grotesk', sans-serif; }
+
+.mesh-viz {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+}
+.mesh-compare {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.mesh-box {
+  flex: 1;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  font-size: var(--fs-xs);
+}
+.mesh-box.pre { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.2); }
+.mesh-box.post { background: rgba(0,214,143,0.1); border: 1px solid rgba(0,214,143,0.2); }
+.mesh-box .val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.mesh-box.pre .val { color: var(--red-soft); }
+.mesh-box.post .val { color: var(--green); }
+.mesh-box .lbl { color: var(--slate); }
+
+.pipeline-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.5rem;
+}
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0,200,255,0.05);
+  border: 1px solid var(--cyan-border);
+  border-radius: 4px;
+  padding: 0.6rem 0.9rem;
+}
+.step-num {
+  width: 24px; height: 24px;
+  background: var(--cyan);
+  color: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.step-text { font-size: var(--fs-xs); color: var(--slate-light); }
+
+/* TECH STACK */
+.tech-wrap { background: var(--navy-mid); }
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+.tech-stack h3 { font-size: var(--fs-xl); font-weight: 600; margin-bottom: 1.5rem; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--navy);
+  border: 1px solid rgba(139,155,180,0.2);
+  color: var(--white);
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.tech-tag.highlight { border-color: var(--cyan-border); color: var(--cyan); }
+.differentiators { display: flex; flex-direction: column; gap: 1.25rem; }
+.diff-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: var(--navy-card);
+  border: 1px solid rgba(139,155,180,0.08);
+  border-radius: 6px;
+}
+.diff-icon {
+  width: 36px; height: 36px;
+  background: var(--cyan-dim);
+  border: 1px solid var(--cyan-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--cyan);
+}
+.diff-card h4 { font-size: var(--fs-base); font-weight: 600; margin-bottom: 0.3rem; }
+.diff-card p { font-size: var(--fs-sm); color: var(--slate); line-height: 1.5; }
+
+/* SECTORS */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(139,155,180,0.1);
+  border: 1px solid rgba(139,155,180,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+.sector-card {
+  background: var(--navy-card);
+  padding: 1.75rem 2rem;
+}
+.sector-card h3 { font-size: var(--fs-lg); font-weight: 600; margin-bottom: 0.5rem; }
+.sector-card p { color: var(--slate); font-size: var(--fs-sm); line-height: 1.55; }
+.sector-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  margin-bottom: 0.75rem;
+}
+.sector-card:nth-child(2) .sector-dot { background: var(--amber); }
+.sector-card:nth-child(3) .sector-dot { background: var(--green); }
+.sector-card:nth-child(4) .sector-dot { background: #A78BFA; }
+
+/* CTA */
+.cta-wrap {
+  background: linear-gradient(135deg, #080D1A 0%, #0E1829 100%);
+  border-top: 1px solid rgba(0,200,255,0.1);
+}
+.cta-inner {
+  max-width: 700px;
+}
+.cta-wrap h2 {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+.cta-wrap p {
+  color: var(--slate-light);
+  font-size: var(--fs-lg);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 55ch;
+}
+.cta-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.cta-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--slate-light);
+  font-size: var(--fs-sm);
+}
+.cta-contact-item a { color: var(--slate-light); }
+.cta-contact-item a:hover { color: var(--cyan); opacity: 1; }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(139,155,180,0.08);
+  padding: 2rem clamp(1.5rem, 8vw, 8rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: var(--white);
+}
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { color: var(--slate); font-size: var(--fs-sm); }
+.footer-links a:hover { color: var(--white); opacity: 1; }
+footer p { color: var(--slate); font-size: var(--fs-xs); }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero-stats { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .case-card { grid-template-columns: 1fr; }
+  .case-card.reverse { direction: ltr; }
+  .case-visual { min-height: 220px; }
+  .tech-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sectors-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 4rem clamp(1.25rem, 5vw, 2rem); }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .hero-name { font-size: 2.5rem; }
+  .metrics-grid { gap: 1px; }
+  .case-metrics-mini { gap: 1rem; }
+}
+
+/* MOBILE NAV OPEN */
+nav.open .nav-links {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(8,13,26,0.98);
+  padding: 2rem;
+  gap: 1.5rem;
+  z-index: 98;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+nav.open .nav-links a { font-size: var(--fs-lg); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Hamza<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#scale">Scale</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Case Studies</a></li>
+    <li><a href="#tech">Stack</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">LiDAR &amp; Photogrammetry Specialist · 5 Years Experience</div>
+    <h1 class="hero-name">Hamza<br>Zaheer</h1>
+    <div class="hero-title">Engineering Reality Into Digital Intelligence</div>
+    <p class="hero-desc">I register, fuse, clean and model large-scale LiDAR and photogrammetry data — and build automation pipelines for survey, inspection and industrial clients.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View Case Studies</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">8,000</div>
+      <div class="hero-stat-label">Scans Registered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">287K</div>
+      <div class="hero-stat-label">Drone Frames Aligned</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">2.17cm</div>
+      <div class="hero-stat-label">ICP RMS Achieved</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-wrap">
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">About</div>
+      <h2>Full-Stack Spatial Engineer</h2>
+      <p>Data operations engineer and workflow automation specialist with over 5 years of experience in digital inspection, 2D/3D annotation, and pipeline automation in the Oil &amp; Gas sector.</p>
+      <p>Through freelance work I've handled end-to-end LiDAR and photogrammetry projects — from raw multi-setup scans through to watertight meshes, deviation maps, and automated metrology pipelines.</p>
+      <p>Based in Wah Cantt, Pakistan. MS Electrical Engineering (Control &amp; Optimization), HITEC University.</p>
+      <div class="about-links">
+        <a href="https://www.linkedin.com/in/muhammad-hamza-zaheer" target="_blank" class="about-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/Hamza030398" target="_blank" class="about-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://drive.google.com/drive/folders/1-2JauHhV3EKyeVbjNKY-4UoQ7duSrIDG?usp=drive_link" target="_blank" class="about-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Projects &amp; Demos
+        </a>
+        <a href="https://drive.google.com/drive/folders/1KTJM1HCFuhaIEEvnW63ak7w-iZojmsLR?usp=drive_link" target="_blank" class="about-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Certifications
+        </a>
+      </div>
+    </div>
+    <div class="about-skills">
+      <h3>Core Expertise</h3>
+      <div class="skill-group">
+        <div class="skill-group-label">Spatial Data &amp; 3D</div>
+        <div class="skill-tags">
+          <span class="skill-tag">LiDAR Processing</span>
+          <span class="skill-tag">Point Cloud Registration</span>
+          <span class="skill-tag">Photogrammetry</span>
+          <span class="skill-tag">Mesh Generation</span>
+          <span class="skill-tag">ICP Registration</span>
+          <span class="skill-tag">C2C Deviation</span>
+          <span class="skill-tag">3D Metrology</span>
+          <span class="skill-tag">Subsea Photogrammetry</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">CloudCompare</span>
+          <span class="skill-tag">PolyWorks</span>
+          <span class="skill-tag">Leica Cyclone 360</span>
+          <span class="skill-tag">PyCC</span>
+          <span class="skill-tag">Navisworks</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Annotation &amp; Data Ops</div>
+        <div class="skill-tags">
+          <span class="skill-tag">2D Image Annotation</span>
+          <span class="skill-tag">3D Point Cloud Labeling</span>
+          <span class="skill-tag">ML Dataset Preparation</span>
+          <span class="skill-tag">QA Workflows</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Programming &amp; Automation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">CUDA</span>
+          <span class="skill-tag">Google Apps Script</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Make.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SCALE -->
+<section id="scale">
+  <div class="scale-header">
+    <div class="section-label">Capability Proof</div>
+    <h2>Proven Performance at Scale</h2>
+    <p>Tested across massive infrastructure, maritime assets, and complex industrial environments.</p>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-num">8,000</div>
+      <div class="metric-label">Registered Scans</div>
+      <div class="metric-desc">~30M points per terrestrial scan batch with millimeter alignment across multi-scan projects.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">287K</div>
+      <div class="metric-label">Drone Images Aligned</div>
+      <div class="metric-desc">Single-facility photogrammetry alignment and mesh generation from aerial imagery.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">2,500m</div>
+      <div class="metric-label">Continuous Capture</div>
+      <div class="metric-desc">Single continuous inspection and scan alignment distance on a single asset.</div>
+    </div>
+  </div>
+  <div class="integrity-bar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C8FF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <p><strong>Zero-Loss Data Integrity</strong> — Every dataset passes rigorous Cloud-to-Cloud deviation &amp; ICP RMS verification before delivery.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="services-wrap">
+<section id="services">
+  <div class="section-label">What I Do</div>
+  <h2 style="font-size: var(--fs-3xl); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem;">Core Technical Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+      <h3>Point Cloud Registration</h3>
+      <p>Leica, FARO, and custom LiDAR system alignment with millimeter precision across multi-scan projects.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <h3>LiDAR + Drone Fusion</h3>
+      <p>Combines laser scanning precision with aerial photogrammetry coverage into unified coordinate-aligned environments.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+      <h3>Cleaning &amp; Classification</h3>
+      <p>Automated noise removal, voxel subsampling, statistical outlier removal, and feature isolation.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      <h3>CAD &amp; BIM Generation</h3>
+      <p>Converts raw point clouds into clean 2D CAD drawings and BIM-ready models for downstream engineering.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l9-14 9 14H3z"/><path d="M12 3v14"/></svg>
+      <h3>Underwater Photogrammetry</h3>
+      <p>High-precision 3D reconstruction for subsea pipelines, mooring chains, hulls, and marine infrastructure.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <h3>Pipeline Automation</h3>
+      <p>Custom Python, C++, and CUDA scripts for automated registration, metrology, and data export workflows.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="cases-header">
+    <div class="section-label">Case Studies</div>
+    <h2>Project Work</h2>
+    <p>Freelance projects (Sep–Nov 2026) and professional work at Abyss Solutions.</p>
+  </div>
+
+  <!-- Case 1 -->
+  <div class="case-card">
+    <div class="case-info">
+      <span class="case-tag">Case Study 01</span>
+      <div style="margin-bottom:0.5rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+        <span class="case-tool">Python</span>
+        <span class="case-tool">CloudCompare</span>
+        <span class="case-tool">ICP</span>
+      </div>
+      <h3>Wear Analysis — Automated 3D Metrology</h3>
+      <p>Developed a Python automation pipeline and CloudCompare scripting workflow for high-throughput 3D wear analysis. Automated face alignment using ICP, Cloud-to-Mesh deviation mapping for linear wear depth, and direct export to Google Sheets — eliminating manual measurement entirely.</p>
+      <div class="case-metrics-mini">
+        <div class="case-metric-mini">
+          <div class="num">80</div>
+          <div class="lbl">Specimens</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">160</div>
+          <div class="lbl">Scan Pairs</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">0</div>
+          <div class="lbl">Manual Steps</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-visual">
+      <div class="case-visual-inner">
+        <div style="font-size:var(--fs-xs); color:var(--slate); margin-bottom:0.75rem; letter-spacing:0.1em; text-transform:uppercase;">Wear Depth Distribution</div>
+        <div class="viz-chart-bar">
+          <div class="viz-bar" style="height:40%; background:linear-gradient(to top,#00C8FF,#0088aa);"></div>
+          <div class="viz-bar" style="height:65%; background:linear-gradient(to top,#00C8FF,#0088aa);"></div>
+          <div class="viz-bar" style="height:55%; background:linear-gradient(to top,#00C8FF,#0088aa);"></div>
+          <div class="viz-bar" style="height:80%; background:linear-gradient(to top,#00C8FF,#0088aa);"></div>
+          <div class="viz-bar" style="height:48%; background:linear-gradient(to top,#F5A623,#c07a00);"></div>
+          <div class="viz-bar" style="height:92%; background:linear-gradient(to top,#F5A623,#c07a00);"></div>
+          <div class="viz-bar" style="height:70%; background:linear-gradient(to top,#F5A623,#c07a00);"></div>
+          <div class="viz-bar" style="height:38%; background:linear-gradient(to top,#00D68F,#008855);"></div>
+          <div class="viz-bar" style="height:100%; background:linear-gradient(to top,#00D68F,#008855);"></div>
+          <div class="viz-bar" style="height:75%; background:linear-gradient(to top,#00D68F,#008855);"></div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:0.5rem;font-size:var(--fs-xs);color:var(--slate);">
+          <span style="color:#00C8FF;">■ Group 1-3</span>
+          <span style="color:#F5A623;">■ Group 4-6</span>
+          <span style="color:#00D68F;">■ Group 7-10</span>
+        </div>
+        <div style="margin-top:1rem;font-size:var(--fs-xs);color:var(--slate-light);text-align:center;line-height:1.5;">
+          C2M Deviation mapping: linear wear depth<br>per specimen pair across 5 groups
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 2 -->
+  <div class="case-card reverse">
+    <div class="case-info">
+      <span class="case-tag">Case Study 02</span>
+      <div style="margin-bottom:0.5rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+        <span class="case-tool">Leica Cyclone 360</span>
+        <span class="case-tool">PyCC</span>
+        <span class="case-tool">Poisson Reconstruction</span>
+      </div>
+      <h3>Warehouse LiDAR Processing &amp; Mesh Generation</h3>
+      <p>Processed a multi-setup warehouse LiDAR dataset. Achieved unified 0.001m bundle error across 4 setups and 3 links with 83% overlap validation. Applied voxel grid subsampling and statistical outlier removal, then scripted Poisson surface reconstruction via PyCC to generate watertight 3D mesh models.</p>
+      <div class="case-metrics-mini">
+        <div class="case-metric-mini">
+          <div class="num">0.001m</div>
+          <div class="lbl">Bundle Error</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">83%</div>
+          <div class="lbl">Overlap Valid.</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">4</div>
+          <div class="lbl">Setups</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-visual">
+      <div class="case-visual-inner">
+        <div class="pipeline-steps">
+          <div class="pipeline-step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Subsampling &amp; Filtering</strong><br>Voxel grid + statistical outlier removal</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Multi-Scan Bundle</strong><br>0.001m error · 4 setups · 3 links · 83% overlap</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Automated Mesh Gen</strong><br>PyCC Poisson surface reconstruction → watertight mesh</div>
+          </div>
+        </div>
+        <div style="font-size:var(--fs-xs);color:var(--slate);text-align:center;padding:0 1.5rem;">
+          Deliverables: Cleaned cloud · Cyclone 360 bundle report · Watertight mesh model
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 3 -->
+  <div class="case-card">
+    <div class="case-info">
+      <span class="case-tag">Case Study 03</span>
+      <div style="margin-bottom:0.5rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+        <span class="case-tool">CloudCompare</span>
+        <span class="case-tool">PolyWorks</span>
+        <span class="case-tool">C2C Deviation</span>
+      </div>
+      <h3>TLS vs. Photogrammetry Alignment &amp; Deviation Analysis</h3>
+      <p>Performed Cloud-to-Cloud deviation analysis between a 9.24M-point TLS reference dataset and a photogrammetry-derived point cloud. Achieved 2.17 cm final ICP RMS. 75% of photogrammetry points fell within 3.5 cm of TLS reference. Localized outliers traced to low-overlap vegetated areas.</p>
+      <div class="case-metrics-mini">
+        <div class="case-metric-mini">
+          <div class="num">9.24M</div>
+          <div class="lbl">Points</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">2.17cm</div>
+          <div class="lbl">ICP RMS</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">75%</div>
+          <div class="lbl">Within 3.5cm</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-visual">
+      <div class="case-visual-inner">
+        <div style="font-size:var(--fs-xs);color:var(--slate);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">Deviation Percentiles</div>
+        <table class="deviation-table">
+          <tr><th>Percentile</th><th>Deviation</th></tr>
+          <tr><td>P50 (Median)</td><td>1.4 cm</td></tr>
+          <tr><td>P75</td><td>3.5 cm</td></tr>
+          <tr><td>P95</td><td>16.0 cm</td></tr>
+          <tr><td>P99</td><td>35.4 cm</td></tr>
+        </table>
+        <div style="margin-top:1rem;font-size:var(--fs-xs);color:var(--slate);text-align:center;">
+          Outliers concentrated in low-overlap<br>vegetated ground areas
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 4 -->
+  <div class="case-card reverse">
+    <div class="case-info">
+      <span class="case-tag">Case Study 04</span>
+      <div style="margin-bottom:0.5rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+        <span class="case-tool">LiDAR</span>
+        <span class="case-tool">Mesh QA</span>
+        <span class="case-tool">STL</span>
+      </div>
+      <h3>LiDAR Scan Mesh Segmentation &amp; Quality Control</h3>
+      <p>Performed mesh segmentation and QC on a handscan LiDAR dataset. Identified severe scale/geometric distortion in one scan; rejected direct cross-subtraction and completed full reconstruction using Handscan 1 STL export. Delivered complete surface metrics.</p>
+      <div class="case-metrics-mini">
+        <div class="case-metric-mini">
+          <div class="num">91.7%</div>
+          <div class="lbl">Surface Complete</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">142K</div>
+          <div class="lbl">mm² Reconstructed</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-visual">
+      <div class="case-visual-inner">
+        <div class="mesh-viz">
+          <div style="font-size:var(--fs-xs);color:var(--slate);letter-spacing:0.1em;text-transform:uppercase;">Surface Area Comparison</div>
+          <div class="mesh-compare">
+            <div class="mesh-box pre">
+              <span class="val">130,991</span>
+              <span class="lbl">mm² Pre-Reconstruction</span>
+            </div>
+            <div class="mesh-box post">
+              <span class="val">142,808</span>
+              <span class="lbl">mm² Post-Reconstruction</span>
+            </div>
+          </div>
+          <div style="font-size:var(--fs-xs);color:var(--slate-light);text-align:center;line-height:1.6;">
+            Gap area: 15,792 mm² · Bounding: 631.6 × 237.1 mm<br>
+            <span style="color:var(--green);">91.7% surface completeness achieved</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 5 -->
+  <div class="case-card">
+    <div class="case-info">
+      <span class="case-tag">Case Study 05</span>
+      <div style="margin-bottom:0.5rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+        <span class="case-tool">Underwater Photogrammetry</span>
+        <span class="case-tool">Mesh Reconstruction</span>
+      </div>
+      <h3>Marine &amp; Subsea Photogrammetry — Mooring Chain &amp; Hull Inspection</h3>
+      <p>Executed subsea structural surveys using orbital photogrammetry camera vectors for complete 3D hull reconstruction. Generated millimeter-scale surface meshes for marine mooring chain wear and volume loss calculation. Applied multi-ring camera alignment for corrosion and bio-fouling inspection of offshore infrastructure.</p>
+      <div class="case-metrics-mini">
+        <div class="case-metric-mini">
+          <div class="num">mm</div>
+          <div class="lbl">Scale Accuracy</div>
+        </div>
+        <div class="case-metric-mini">
+          <div class="num">360°</div>
+          <div class="lbl">Orbital Coverage</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-visual">
+      <div class="case-visual-inner">
+        <svg viewBox="0 0 200 160" width="180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="seaGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00C8FF" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#080D1A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="100" cy="80" rx="80" ry="55" fill="url(#seaGrad)" stroke="rgba(0,200,255,0.2)" stroke-width="1"/>
+          <ellipse cx="100" cy="80" rx="55" ry="38" fill="none" stroke="rgba(0,200,255,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
+          <ellipse cx="100" cy="80" rx="30" ry="20" fill="none" stroke="rgba(0,200,255,0.5)" stroke-width="1.5"/>
+          <circle cx="100" cy="80" r="6" fill="#00C8FF" opacity="0.9"/>
+          <circle cx="100" cy="80" r="3" fill="white"/>
+          <!-- Camera positions -->
+          <circle cx="100" cy="25" r="3" fill="#00C8FF"/>
+          <circle cx="145" cy="52" r="3" fill="#00C8FF"/>
+          <circle cx="145" cy="108" r="3" fill="#00C8FF"/>
+          <circle cx="100" cy="135" r="3" fill="#00C8FF"/>
+          <circle cx="55" cy="108" r="3" fill="#00C8FF"/>
+          <circle cx="55" cy="52" r="3" fill="#00C8FF"/>
+          <line x1="100" y1="25" x2="100" y2="77" stroke="rgba(0,200,255,0.3)" stroke-width="0.5"/>
+          <line x1="145" y1="52" x2="103" y2="78" stroke="rgba(0,200,255,0.3)" stroke-width="0.5"/>
+          <line x1="145" y1="108" x2="103" y2="82" stroke="rgba(0,200,255,0.3)" stroke-width="0.5"/>
+          <line x1="100" y1="135" x2="100" y2="83" stroke="rgba(0,200,255,0.3)" stroke-width="0.5"/>
+          <line x1="55" y1="108" x2="97" y2="82" stroke="rgba(0,200,255,0.3)" stroke-width="0.5"/>
+          <line x1="55" y1="52" x2="97" y2="78" stroke="rgba(0,200,255,0.3)" stroke-width="0.5"/>
+        </svg>
+        <div style="font-size:var(--fs-xs);color:var(--slate);text-align:center;line-height:1.6;">
+          Orbital photogrammetry camera vectors<br>
+          Multi-ring alignment · Corrosion &amp; bio-fouling detection
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<div class="tech-wrap">
+<section id="tech">
+  <div class="section-label">Toolset &amp; Differentiators</div>
+  <h2 style="font-size: var(--fs-3xl); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem;">Technology Stack &amp; Why Hire Me</h2>
+  <div class="tech-grid">
+    <div class="tech-stack">
+      <h3>Core Hardware &amp; Software</h3>
+      <div class="tech-tags">
+        <span class="tech-tag highlight">Leica ScanStation</span>
+        <span class="tech-tag highlight">FARO Focus</span>
+        <span class="tech-tag highlight">UAV / Photogrammetry</span>
+        <span class="tech-tag highlight">CloudCompare</span>
+        <span class="tech-tag highlight">PolyWorks</span>
+        <span class="tech-tag">Python / C++</span>
+        <span class="tech-tag">CUDA Acceleration</span>
+        <span class="tech-tag">Revit / BIM</span>
+        <span class="tech-tag">PyCC</span>
+        <span class="tech-tag">Leica Cyclone 360</span>
+        <span class="tech-tag">Google Apps Script</span>
+        <span class="tech-tag">Make.com</span>
+        <span class="tech-tag">n8n</span>
+        <span class="tech-tag">MATLAB</span>
+      </div>
+      <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(0,200,255,0.05);border:1px solid var(--cyan-border);border-radius:6px;">
+        <p style="font-size:var(--fs-sm);color:var(--slate-light);line-height:1.6;">Custom GPU scripts allow sub-second spatial point filtering and parallelized point cloud registration across thousands of high-res scans.</p>
+      </div>
+    </div>
+    <div class="differentiators">
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <h4>Proven at Scale</h4>
+          <p>Handled single-facility datasets exceeding 287,000 aerial frames and 8,000 registered scans.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div>
+          <h4>Automated Repeat Pipelines</h4>
+          <p>Custom automated registration and metrology algorithms drastically cut project turnaround time.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div>
+          <h4>Full-Stack Spatial Engineer</h4>
+          <p>One specialist handling registration, fusion, cleaning, 3D annotation, and final BIM/CAD — end to end.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <h4>5 Years Domain Experience</h4>
+          <p>Deep O&amp;G sector knowledge from Abyss Solutions — inspection workflows, SaaS ops, data QA at scale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTORS -->
+<section id="sectors">
+  <div class="section-label">Ideal Clients</div>
+  <h2 style="font-size: var(--fs-3xl); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem;">Target Sectors</h2>
+  <p style="color:var(--slate); margin-bottom:0;">Delivering specialized spatial engineering services across demanding professional verticals.</p>
+  <div class="sectors-grid">
+    <div class="sector-card">
+      <div class="sector-dot"></div>
+      <h3>Surveying &amp; Geomatics Firms</h3>
+      <p>Outsourced heavy batch registration, GCP alignment, and massive point cloud processing support.</p>
+    </div>
+    <div class="sector-card">
+      <div class="sector-dot"></div>
+      <h3>BIM Consultants &amp; AEC Contractors</h3>
+      <p>Scan-to-BIM modeling, structural deviation maps, and standard Revit/CAD deliverable generation.</p>
+    </div>
+    <div class="sector-card">
+      <div class="sector-dot"></div>
+      <h3>Oil &amp; Gas and Industrial Plants</h3>
+      <p>As-built facility modeling, tank deformation analysis, and high-density piping mesh extraction.</p>
+    </div>
+    <div class="sector-card">
+      <div class="sector-dot"></div>
+      <h3>Marine, Offshore &amp; Mining</h3>
+      <p>Subsea inspection photogrammetry, hull scans, open-pit mine volume calculation, and slope stability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+<section id="contact">
+  <div class="cta-inner">
+    <div class="section-label">Get in Touch</div>
+    <h2>Open to Freelance &amp; Full-Time Opportunities</h2>
+    <p>5 years of experience in LiDAR processing, photogrammetry, 3D annotation, and data operations — available for freelance projects and full-time roles in spatial data engineering.</p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+      <a href="mailto:hamzzazaheeer@gmail.com" class="btn-primary">Email Me</a>
+      <a href="https://www.linkedin.com/in/muhammad-hamza-zaheer" target="_blank" class="btn-outline">LinkedIn Profile</a>
+    </div>
+    <div class="cta-contacts">
+      <div class="cta-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9BB4" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:hamzzazaheeer@gmail.com">hamzzazaheeer@gmail.com</a>
+      </div>
+      <div class="cta-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8B9BB4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <a href="https://www.linkedin.com/in/muhammad-hamza-zaheer" target="_blank">linkedin.com/in/muhammad-hamza-zaheer</a>
+      </div>
+      <div class="cta-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8B9BB4"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <a href="https://github.com/Hamza030398" target="_blank">github.com/Hamza030398</a>
+      </div>
+      <div class="cta-contact-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9BB4" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        <span>Wah Cantt, Punjab, Pakistan</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Hamza Zaheer<span style="color:var(--cyan);">.</span></div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/muhammad-hamza-zaheer" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Hamza030398" target="_blank">GitHub</a>
+    <a href="https://drive.google.com/drive/folders/1-2JauHhV3EKyeVbjNKY-4UoQ7duSrIDG?usp=drive_link" target="_blank">Projects</a>
+    <a href="https://drive.google.com/drive/folders/1KTJM1HCFuhaIEEvnW63ak7w-iZojmsLR?usp=drive_link" target="_blank">Certifications</a>
+  </div>
+  <p>LiDAR &amp; Photogrammetry Specialist · Technical Portfolio 2026</p>
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navbar').classList.toggle('open');
+}
+// Close nav on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navbar').classList.remove('open');
+  });
+});
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = '';
+    if (a.getAttribute('href') === '#' + current) a.style.color = '#00C8FF';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
